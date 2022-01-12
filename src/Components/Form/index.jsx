@@ -1,14 +1,17 @@
 //react
 import { useState } from 'react';
 
-//plugins
-//datepicker
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+//components
+import DropDown from '../Dropdown';
+import DatePickerComponent from '../DatePickerComponent';
+
+//data
+import states from '../../Assets/Data/cities';
+import departments from '../../Assets/Data/departments';
 
 function Form() {
-	const [startDateOfBirth, setStartDateOfBirth] = useState(new Date());
-	const [startDate, setStartDate] = useState(new Date());
+	const [startDateOfBirth, setStartDateOfBirth] = useState();
+	const [startDate, setStartDate] = useState();
 
 	return (
 		<>
@@ -20,10 +23,10 @@ function Form() {
 				<input type="text" id="last-name" />
 
 				<label for="date-of-birth">Date of Birth</label>
-				<DatePicker id="date-of-birth" selected={startDateOfBirth} onChange={(date) => setStartDateOfBirth(date)} />
+				<DatePickerComponent id="date-of-birth" startDate={startDateOfBirth} setDate={setStartDateOfBirth} />
 
 				<label for="start-date">Start Date</label>
-				<DatePicker id="start-date" selected={startDate} onChange={(date) => setStartDate(date)} />
+				<DatePickerComponent id="start-date" startDate={startDate} setDate={setStartDate} />
 
 				<fieldset className="address">
 					<legend>Address</legend>
@@ -35,20 +38,14 @@ function Form() {
 					<input id="city" type="text" />
 
 					<label for="state">State</label>
-					<select name="state" id="state"></select>
+					<DropDown id="state" options={states} />
 
 					<label for="zip-code">Zip Code</label>
 					<input id="zip-code" type="number" />
 				</fieldset>
 
 				<label for="department">Department</label>
-				<select name="department" id="department">
-					<option>Sales</option>
-					<option>Marketing</option>
-					<option>Engineering</option>
-					<option>Human Resources</option>
-					<option>Legal</option>
-				</select>
+				<DropDown id="department" options={departments} />
 			</form>
 			<button onclick="saveEmployee()">Save</button>
 		</>
