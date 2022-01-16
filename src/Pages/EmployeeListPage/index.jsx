@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 
+import DataTable from '../../Components/DataTable';
+
 function EmployeeListPage() {
 	return (
-		<body>
-			<div id="employee-div" className="container">
-				<h1>Current Employees</h1>
-				<table id="employee-table" className="display"></table>
-				<Link to="/">Home</Link>
-			</div>
-		</body>
+		<div id="employee-div" className="container">
+			<h1>Current Employees</h1>
+			<table id="employee-table" className="display"></table>
+			<DataTable />
+			<Link to="/">Home</Link>
+		</div>
 	);
 }
 
