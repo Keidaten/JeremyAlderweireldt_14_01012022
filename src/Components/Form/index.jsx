@@ -1,53 +1,63 @@
 //react
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //components
 import DropDown from '../Dropdown';
 import DatePickerComponent from '../DatePickerComponent';
+import TextInput from '../TextInput';
 
 //data
 import states from '../../Assets/Data/cities';
 import departments from '../../Assets/Data/departments';
 
+//redux
+import { useDispatch } from 'react-redux';
+
+//features
+import { storePluginState } from '../../features/formData';
+
+//plugins
+//select
+import Select from 'react-select';
+
 function Form() {
-	const [startDateOfBirth, setStartDateOfBirth] = useState();
-	const [startDate, setStartDate] = useState();
+	const dispatch = useDispatch();
+
+	const [state, setState] = useState();
+	const [department, setDepartment] = useState();
+
+	useEffect(() => {
+		state && dispatch(storePluginState(state.value, 'state'));
+	}, [state, dispatch]);
+
+	useEffect(() => {
+		department && dispatch(storePluginState(department.label, 'department'));
+	}, [department, dispatch]);
 
 	return (
 		<>
 			<form action="#" id="create-employee">
-				<label for="first-name">First Name</label>
-				<input type="text" id="first-name" />
+				<TextInput id="firstName" label="First Name" />
+				<TextInput id="lastName" label="Last Name" />
 
-				<label for="last-name">Last Name</label>
-				<input type="text" id="last-name" />
-
-				<label for="date-of-birth">Date of Birth</label>
-				<DatePickerComponent id="date-of-birth" startDate={startDateOfBirth} setDate={setStartDateOfBirth} />
-
-				<label for="start-date">Start Date</label>
-				<DatePickerComponent id="start-date" startDate={startDate} setDate={setStartDate} />
+				<DatePickerComponent id="dateOfBirth" />
+				<DatePickerComponent id="startDate" />
 
 				<fieldset className="address">
 					<legend>Address</legend>
 
-					<label for="street">Street</label>
-					<input id="street" type="text" />
+					<TextInput id="street" label="Street" />
+					<TextInput id="city" label="City" />
 
-					<label for="city">City</label>
-					<input id="city" type="text" />
+					<label htmlFor="state">State</label>
+					<Select id="state" options={states} defaultValue={state} onChange={setState} />
 
-					<label for="state">State</label>
-					<DropDown id="state" options={states} />
-
-					<label for="zip-code">Zip Code</label>
-					<input id="zip-code" type="number" />
+					<TextInput id="zipCode" label="Zip Code" />
 				</fieldset>
-
-				<label for="department">Department</label>
-				<DropDown id="department" options={departments} />
+				<label htmlFor="department">Department</label>
+				<Select id="department" options={departments} defaultValue={department} onChange={setDepartment} />
+				<button>Save</button>
 			</form>
-			<button onclick="saveEmployee()">Save</button>
 		</>
 	);
 }
