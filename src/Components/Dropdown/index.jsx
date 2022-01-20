@@ -1,10 +1,46 @@
+import { useState, useEffect } from 'react';
+
+//redux
+import { useDispatch } from 'react-redux';
+
 //select
 import Select from 'react-select';
 
-function DropDown({ options }) {
+//data
+import states from '../../Assets/Data/cities';
+import departments from '../../Assets/Data/departments';
+
+//features
+import { storePluginState } from '../../features/formData';
+
+function DropDown({ id }) {
+	const dispatch = useDispatch();
+
+	const [state, setState] = useState();
+	const [department, setDepartment] = useState();
+
+	useEffect(() => {
+		state && dispatch(storePluginState(state.value, 'state'));
+	}, [state, dispatch]);
+
+	useEffect(() => {
+		department && dispatch(storePluginState(department.label, 'department'));
+	}, [department, dispatch]);
+
 	return (
 		<>
-			<Select options={options} />
+			{id === 'state' && (
+				<>
+					<label htmlFor={id}>State</label>
+					<Select id={id} options={states} defaultValue={state} onChange={setState} />
+				</>
+			)}
+			{id === 'department' && (
+				<>
+					<label htmlFor={id}>Department</label>
+					<Select id={id} options={departments} defaultValue={department} onChange={setDepartment} />
+				</>
+			)}
 		</>
 	);
 }
