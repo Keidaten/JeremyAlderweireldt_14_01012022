@@ -6,16 +6,16 @@ import TextInput from '../TextInput';
 //redux
 import { useSelector } from 'react-redux';
 
-function Form() {
-	const store = useSelector((state) => state);
+//selector
+import { selectStore } from '../../utils/selectors';
 
-	console.log(store);
+function Form() {
+	const store = useSelector(selectStore);
 
 	//local storage
 	const updateEmployees = () => {
 		//get localStorage and parse it
 		let storage = JSON.parse(localStorage.getItem('Employee'));
-		console.log(storage);
 		//ig storage null, initialize store as a table, if not : push storage to store
 		storage === null ? (storage = [store]) : storage.push(store);
 		//set localStorage with jsoned storage

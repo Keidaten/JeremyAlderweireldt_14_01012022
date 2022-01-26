@@ -6,7 +6,7 @@ import employeeData from '../features/formData';
 
 //reducers
 export const rootReducer = combineReducers({
-	employeeData: employeeData,
+	employeeDataReducer: employeeData,
 });
 
 //devtools

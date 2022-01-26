@@ -1,1 +1,1 @@
-export const selectStore = (state) => state;
+export const selectStore = (state) => state.employeeDataReducer;

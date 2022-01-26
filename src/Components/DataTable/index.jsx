@@ -1,13 +1,13 @@
+import { useEffect, useState } from 'react';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 function DataTable() {
-	const rowData = [
-		{ firstName: 'Celia', lastName: 'Mondeo', startDate: 30, department: 'Michigan', dateOfBirth: 20, street: 'Malcolm', city: 'NY', state: 'idk', zipCode: 5000 },
-		{ firstName: 'Celia', lastName: 'Mondeo', startDate: 30, department: 'Michigan', dateOfBirth: 20, street: 'Malcolm', city: 'NY', state: 'idk', zipCode: 5000 },
-	];
+	const storage = JSON.parse(localStorage.getItem('Employee'));
+
+	const [rowData, setRowData] = useState(storage ? storage : []);
+
 	return (
 		<>
 			<div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
