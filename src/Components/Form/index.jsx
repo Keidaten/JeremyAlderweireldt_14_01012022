@@ -4,13 +4,17 @@ import DatePickerComponent from '../DatePickerComponent';
 import TextInput from '../TextInput';
 
 //redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 //selector
 import { selectStore } from '../../utils/selectors';
 
+//features
+import { reset } from '../../features/formData';
+
 function Form() {
 	const store = useSelector(selectStore);
+	const dispatch = useDispatch();
 
 	//local storage
 	const updateEmployees = () => {
@@ -25,6 +29,7 @@ function Form() {
 	const handleSumbit = (e) => {
 		e.preventDefault();
 		updateEmployees();
+		dispatch(reset());
 	};
 
 	return (

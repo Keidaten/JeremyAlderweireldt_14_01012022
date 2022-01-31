@@ -16,6 +16,7 @@ const initialState = {
 
 const USERINPUT = 'storeUserInput';
 const PLUGINSTATE = 'storePluginState';
+const RESETSTATE = '';
 
 export const storeUserInput = (event, inputType) => ({
 	type: USERINPUT,
@@ -27,6 +28,10 @@ export const storePluginState = (data, inputType) => ({
 	type: PLUGINSTATE,
 	payload: data,
 	inputType: inputType,
+});
+
+export const reset = () => ({
+	type: RESETSTATE,
 });
 
 export default createReducer(initialState, (builder) => {
@@ -70,5 +75,8 @@ export default createReducer(initialState, (builder) => {
 				draft.department = action.payload;
 				return;
 			}
+		})
+		.addCase(RESETSTATE, () => {
+			return initialState;
 		});
 });
