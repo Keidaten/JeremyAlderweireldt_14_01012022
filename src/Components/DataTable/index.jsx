@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
@@ -6,7 +6,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 function DataTable() {
 	const storage = JSON.parse(localStorage.getItem('Employee'));
 
-	const [rowData, setRowData] = useState(storage ? storage : []);
+	const [rowData] = useState(storage ? storage : []);
 
 	return (
 		<>

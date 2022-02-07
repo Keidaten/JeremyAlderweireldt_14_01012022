@@ -1,7 +1,11 @@
+import { useState } from 'react';
+
 //components
 import DropDown from '../Dropdown';
 import DatePickerComponent from '../DatePickerComponent';
 import TextInput from '../TextInput';
+import Modal from '../Modal';
+// import ModalUpgraded from '../ModalUpgraded';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -32,6 +36,12 @@ function Form() {
 		dispatch(reset());
 	};
 
+	const [modalState, setModalState] = useState(false);
+
+	const toggle = () => {
+		setModalState((prev) => !prev);
+	};
+
 	return (
 		<>
 			<form action="#" id="create-employee" onSubmit={(e) => handleSumbit(e)}>
@@ -47,7 +57,10 @@ function Form() {
 					<TextInput id="zipCode" label="Zip Code" />
 				</fieldset>
 				<DropDown id="department" />
-				<button>Save</button>
+				<button onClick={toggle}>Save</button>
+				<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms" color="red">
+					Employee created !
+				</Modal>
 			</form>
 		</>
 	);
