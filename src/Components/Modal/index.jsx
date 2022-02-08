@@ -22,6 +22,7 @@ const Background = styled.div`
 	&.fadeModal-exit-active {
 		opacity: 0;
 	}
+	${(props) => props.customStyle}
 `;
 
 const Content = styled.div`
@@ -30,17 +31,18 @@ const Content = styled.div`
 	margin: 200px auto;
 	max-width: 400px;
 	background: #fff;
-	padding: 15px;
+	padding: 25px;
 	border-radius: 5px;
+	${(props) => props.contentStyle}
 `;
 
 const CloseModalButton = styled.div`
 	position: absolute;
-	top: 0.5px;
-	right: -3.5px;
+	top: 5px;
+	right: 5px;
 	display: block;
-	width: 30px;
-	height: 30px;
+	width: 20px;
+	height: 20px;
 	opacity: 0.5;
 	&:hover {
 		opacity: 1;
@@ -48,7 +50,6 @@ const CloseModalButton = styled.div`
 	&:before,
 	&:after {
 		position: absolute;
-		left: 15px;
 		content: ' ';
 		height: 16px;
 		width: 2px;
@@ -62,12 +63,12 @@ const CloseModalButton = styled.div`
 	}
 `;
 
-function Modal({ modalState, toggleModal, fadeDuration, children }) {
+function Modal({ modalState, toggleModal, fadeDuration, children, backgroundStyle, contentStyle }) {
 	return (
 		<>
 			<CSSTransition classNames="fadeModal" in={modalState} unmountOnExit timeout={200}>
-				<Background fadeDuration={fadeDuration} onClick={toggleModal}>
-					<Content onClick={(e) => e.stopPropagation()}>
+				<Background fadeDuration={fadeDuration} onClick={toggleModal} customStyle={backgroundStyle}>
+					<Content customStyle={contentStyle} onClick={(e) => e.stopPropagation()}>
 						{children}
 						<CloseModalButton onClick={toggleModal} />
 					</Content>
@@ -81,6 +82,8 @@ Modal.propTypes = {
 	modalState: PropTypes.bool.isRequired,
 	toggleModal: PropTypes.func.isRequired,
 	fadeDuration: PropTypes.string,
+	backgroundStyle: PropTypes.string,
+	contentStyle: PropTypes.string,
 };
 
 Modal.defaultProps = { fadeDuration: '400ms' };

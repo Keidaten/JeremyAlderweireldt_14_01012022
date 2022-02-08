@@ -58,7 +58,7 @@ function Form() {
 				</fieldset>
 				<DropDown id="department" />
 				<button onClick={toggle}>Save</button>
-				<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms" color="red">
+				<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms">
 					Employee created !
 				</Modal>
 			</form>
