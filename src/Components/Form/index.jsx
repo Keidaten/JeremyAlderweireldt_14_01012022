@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
+import { Modal } from 'simple-fade-modal-component';
+
 //components
 import DropDown from '../Dropdown';
 import DatePickerComponent from '../DatePickerComponent';
 import TextInput from '../TextInput';
-import Modal from '../Modal';
-// import ModalUpgraded from '../ModalUpgraded';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
