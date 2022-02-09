@@ -1,3 +1,27 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+fieldset {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 20px;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #1976d2;
+}
+
+a {
+	text-decoration: none;
+}
+
+.react-datepicker-wrapper {
+	width: auto;
+}
+
 .title {
 	display: flex;
 	align-items: center;
@@ -11,12 +35,18 @@
 	justify-content: center;
 }
 
-label {
-	display: block;
-	margin-top: 1rem;
-	margin-bottom: 10px;
+.birth-date {
+	margin-right: 1px;
 }
 
-.address {
+.employee-infos {
+	margin-bottom: 15px;
+}
+
+.employee-adress {
 	margin-top: 10px;
+}
+
+.css-1pysi21-MuiFormLabel-root-MuiInputLabel-root {
+	z-index: -1 !important;
 }

@@ -6,6 +6,7 @@ import { Modal } from 'simple-fade-modal-component';
 import DropDown from '../Dropdown';
 import DatePickerComponent from '../DatePickerComponent';
 import TextInput from '../TextInput';
+import Button from '@mui/material/Button';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -31,9 +32,10 @@ function Form() {
 	};
 
 	const handleSumbit = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 		updateEmployees();
 		dispatch(reset());
+		toggle();
 	};
 
 	const [modalState, setModalState] = useState(false);
@@ -44,24 +46,31 @@ function Form() {
 
 	return (
 		<>
-			<form action="#" id="create-employee" onSubmit={(e) => handleSumbit(e)}>
-				<TextInput id="firstName" label="First Name" />
-				<TextInput id="lastName" label="Last Name" />
-				<DatePickerComponent id="dateOfBirth" />
-				<DatePickerComponent id="startDate" />
-				<fieldset className="address">
-					<legend>Address</legend>
-					<TextInput id="street" label="Street" />
-					<TextInput id="city" label="City" />
-					<DropDown id="state" />
-					<TextInput id="zipCode" label="Zip Code" />
-				</fieldset>
-				<DropDown id="department" />
-				<button onClick={toggle}>Save</button>
-				<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms">
-					Employee created !
-				</Modal>
+			<form action="#" id="create-employee">
+				<div className="employee-infos">
+					<fieldset className="employee-personal-infos">
+						<legend>Employee infos</legend>
+						<TextInput id="firstName" label="First Name" />
+						<TextInput id="lastName" label="Last Name" />
+						<DatePickerComponent id="dateOfBirth" />
+						<DatePickerComponent id="startDate" />
+					</fieldset>
+					<fieldset className="employee-adress">
+						<legend>Address</legend>
+						<TextInput id="street" label="Street" />
+						<TextInput id="city" label="City" />
+						<DropDown id="state" />
+						<TextInput id="zipCode" label="Zip Code" />
+						<DropDown id="department" />
+					</fieldset>
+				</div>
+				<Button variant="contained" size="small" onClick={(e) => handleSumbit(e)}>
+					Save
+				</Button>
 			</form>
+			<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms">
+				Employee created !
+			</Modal>
 		</>
 	);
 }
