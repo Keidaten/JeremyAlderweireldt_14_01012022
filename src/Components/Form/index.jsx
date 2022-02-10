@@ -1,16 +1,12 @@
-import { useState, useReducer } from 'react';
+import { useState } from 'react';
 
 import { Modal } from 'simple-fade-modal-component';
-
-//features
-import { storeUserInput } from '../../features/formData';
 
 //components
 import DropDown from '../Dropdown';
 import DatePickerComponent from '../DatePickerComponent';
 import TextInput from '../TextInput';
 import Button from '@mui/material/Button';
-import { TextField } from '@mui/material';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';

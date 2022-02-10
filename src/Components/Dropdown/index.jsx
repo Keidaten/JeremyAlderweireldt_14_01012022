@@ -32,13 +32,13 @@ function DropDown({ id }) {
 			{id === 'state' && (
 				<div>
 					<label htmlFor={id}>State</label>
-					<Select id={id} options={states} defaultValue={state} onChange={setState} />
+					<Select menuPortalTarget={document.body} id={id} options={states} defaultValue={state} onChange={setState} />
 				</div>
 			)}
 			{id === 'department' && (
 				<div>
 					<label htmlFor={id}>Department</label>
-					<Select id={id} options={departments} defaultValue={department} onChange={setDepartment} />
+					<Select menuPortalTarget={document.body} id={id} options={departments} defaultValue={department} onChange={setDepartment} />
 				</div>
 			)}
 		</>
