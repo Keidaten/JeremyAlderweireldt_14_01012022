@@ -6,7 +6,8 @@ fieldset {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	padding: 20px;
+	padding: 25px;
+	border-width: 1px;
 }
 
 a:visited {
@@ -45,8 +46,4 @@ a {
 
 .employee-adress {
 	margin-top: 10px;
-}
-
-.css-1pysi21-MuiFormLabel-root-MuiInputLabel-root {
-	z-index: -1 !important;
 }

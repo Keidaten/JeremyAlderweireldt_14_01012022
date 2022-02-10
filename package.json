@@ -23,7 +23,7 @@
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.2",
     "redux-persist": "^6.0.0",
-    "simple-fade-modal-component": "^1.0.0",
+    "simple-fade-modal-component": "^1.0.2",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"
   },
