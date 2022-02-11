@@ -6,9 +6,9 @@ function EmployeeListPage() {
 	return (
 		<div id="employee-div" className="container">
 			<h1>Current Employees</h1>
+			<Link to="/">Home</Link>
 			<table id="employee-table" className="display"></table>
 			<DataTable />
-			<Link to="/">Home</Link>
 		</div>
 	);
 }

@@ -47,3 +47,22 @@ a {
 .employee-adress {
 	margin-top: 10px;
 }
+
+.datatable {
+	margin-top: 1.83em;
+}
+
+.modal-wrapper {
+	background-color: #1976d2;
+}
+
+.pagination-count {
+	margin: 0 3px 0 3px;
+}
+
+.table-settings {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
