@@ -6,7 +6,7 @@ import { storeUserInput } from '../../features/formData';
 
 import { TextField } from '@mui/material';
 
-function TextInput({ id, label, fill, errorStatus }) {
+function TextInput({ id, label, errorStatus }) {
 	const dispatch = useDispatch();
 
 	return (
@@ -20,7 +20,6 @@ function TextInput({ id, label, fill, errorStatus }) {
 				size="small"
 				onChange={(e) => {
 					dispatch(storeUserInput(e, id));
-					fill(e.target.value.length);
 				}}
 			/>
 		</>

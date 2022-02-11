@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 
 //selector
-import { selectStore } from '../../utils/selectors';
+import { selectStore, selectFirstName, selectLastName } from '../../utils/selectors';
 
 //features
 import { reset } from '../../features/formData';
@@ -22,31 +22,31 @@ function Form() {
 	const store = useSelector(selectStore);
 	const dispatch = useDispatch();
 
-	//Form states
-	const [fillFirstName, setFillFirstName] = useState(0);
-	const [fillLastName, setFillLastName] = useState(0);
-	//error handling
+	const firstName = useSelector(selectFirstName);
+	const lastName = useSelector(selectLastName);
+
 	const [errorFirstName, setErrorFirstName] = useState();
 	const [errorLastName, setErrorLastName] = useState();
 
+	//user error feeback
 	useEffect(() => {
-		fillFirstName > 0 && setErrorFirstName(false);
-		fillLastName > 0 && setErrorLastName(false);
-	}, [fillFirstName, fillLastName]);
+		firstName.length > 0 && setErrorFirstName(false);
+		lastName.length > 0 && setErrorLastName(false);
+	}, [firstName, lastName]);
 
 	//Form verificaton
 	const handleSumbit = (e) => {
 		e.preventDefault();
-		if ((fillFirstName === 0) & (fillLastName === 0)) {
+		if ((firstName === '' || undefined) & (lastName === '' || undefined)) {
 			setErrorFirstName(true);
 			setErrorLastName(true);
 			return;
 		}
-		if (fillLastName === 0) {
+		if (lastName === '' || undefined) {
 			setErrorLastName(true);
 			return;
 		}
-		if (fillFirstName === 0) {
+		if (firstName === '' || undefined) {
 			setErrorFirstName(true);
 			return;
 		} else setErrorFirstName(false);
@@ -77,8 +77,8 @@ function Form() {
 				<div className="employee-infos">
 					<fieldset className="employee-personal-infos">
 						<legend>Employee infos</legend>
-						<TextInput errorStatus={errorFirstName} id="firstName" label="First Name" fill={setFillFirstName} />
-						<TextInput errorStatus={errorLastName} id="lastName" label="Last Name" fill={setFillLastName} />
+						<TextInput errorStatus={errorFirstName} id="firstName" label="First Name" />
+						<TextInput errorStatus={errorLastName} id="lastName" label="Last Name" />
 						<DatePickerComponent id="dateOfBirth" />
 						<DatePickerComponent id="startDate" />
 					</fieldset>
@@ -95,7 +95,7 @@ function Form() {
 					Save
 				</Button>
 			</form>
-			<Modal toggleModal={toggle} modalState={modalState} fadeDuration="400ms">
+			<Modal autoRefreshOnExit={400} toggleModal={toggle} modalState={modalState} fadeDuration="400ms">
 				Employee created !
 			</Modal>
 		</>
