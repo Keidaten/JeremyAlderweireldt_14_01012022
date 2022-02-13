@@ -14,7 +14,7 @@ function TextInput({ id, label, errorStatus }) {
 			<TextField
 				helperText={errorStatus && 'please fill the ' + label}
 				error={errorStatus}
-				id="outlined-basic"
+				id={id}
 				label={label}
 				variant="outlined"
 				size="small"
